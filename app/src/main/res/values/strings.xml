@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AccountSignUpLoginPage</string>
+    <string name="pass_instruction">* Password should be atleast 6 characters</string>
+    <string name="forgot_password">Forgot password?</string>
 </resources>

@@ -2,7 +2,9 @@ package com.example.accountsignuploginpage
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +18,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var loginText: TextView
     private lateinit var etRegEmail: TextInputEditText
     private lateinit var etRegPassword: TextInputEditText
+    private lateinit var regBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         loginText = findViewById(R.id.login_text)
         etRegEmail = findViewById(R.id.etRegEmail)
         etRegPassword = findViewById(R.id.etRegPassword)
+        regBar = findViewById(R.id.reg_bar)
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -32,7 +36,8 @@ class RegisterActivity : AppCompatActivity() {
             createUser()
         }
         loginText.setOnClickListener {
-            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -48,15 +53,20 @@ class RegisterActivity : AppCompatActivity() {
             etRegPassword.error = "Password can't be empty"
             etRegPassword.requestFocus()
         } else {
+            regBar.visibility = View.VISIBLE
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful){
+                    regBar.visibility = View.GONE
                     Toast.makeText(
                         this@RegisterActivity,
                         "Registered successfully!",
                         Toast.LENGTH_LONG
                     ).show()
-                    startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+
+                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                    startActivity(intent)
                 } else {
+                    regBar.visibility = View.GONE
                     Toast.makeText(
                         this@RegisterActivity,
                         "${it.exception?.message}",

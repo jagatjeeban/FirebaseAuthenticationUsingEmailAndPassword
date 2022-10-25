@@ -64,6 +64,14 @@
             android:hint="Password"
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/reg_pass_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pass_instruction"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/regPass"/>
     <Button
         android:id="@+id/regButton"
         android:layout_width="match_parent"
@@ -73,9 +81,8 @@
         app:layout_constraintTop_toBottomOf="@+id/regPass"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginTop="20dp"
-        android:text="Register"
-        android:textStyle="bold"/>
+        android:layout_marginTop="30dp"
+        android:text="Register"/>
 
     <TextView
         android:id="@+id/register_question"
@@ -92,11 +99,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/regButton"
         app:layout_constraintStart_toEndOf="@id/register_question"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:text="Log in"
         android:textStyle="bold"
         android:textColor="@color/purple_200"
-        android:textSize="20dp"/>
+        android:textSize="15sp"/>
+    <ProgressBar
+        android:id="@+id/reg_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_text"
+        android:layout_marginTop="30dp"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
